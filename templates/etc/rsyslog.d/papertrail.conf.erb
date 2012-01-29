@@ -1,0 +1,19 @@
+# file is managed by puppet
+
+$DefaultNetstreamDriverCAFile /etc/syslog.papertrail.crt    # trust these CAs
+$DefaultNetstreamDriver gtls                                # use gtls netstream driver
+$ActionSendStreamDriverMode 1                               # require TLS
+$ActionSendStreamDriverAuthMode x509/name                   # authenticate by hostname
+
+*.* @@<%= host %><% unless port.empty? %>:<%= port %><% end %>
+
+
+$ModLoad imfile
+<% optional_files.each do |file| -%>
+$InputFileName <%= file %>
+$InputFileTag <%= file.split('/').last %>:
+#$InputFilePersistStateInterval 100
+$InputFileStateFile state-<%= file.split('/').last %>
+$InputRunFileMonitor
+
+<% end -%>
