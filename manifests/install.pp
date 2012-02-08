@@ -15,14 +15,14 @@ class papertrail::install {
         require => Package['rsyslog', 'rsyslog-gnutls'],
         notify  => Service['rsyslog'];
 
-        $cert:
-        replace => 'no',
+        $papertrail::cert:
         ensure  => 'present',
+        replace => 'no',
         owner   => 'root',
-		group   => 'root',
+        group   => 'root',
         mode    => '0600',
         require => [
-            File['/etc/rsyslog.d/papertrail.conf'], 
+            File['/etc/rsyslog.d/papertrail.conf'],
             Exec['get_certificates']
         ];
     }
@@ -30,7 +30,7 @@ class papertrail::install {
     exec {
         'get_certificates':
         path    => '/bin/:/usr/bin/:/usr/local/bin/',
-        command => "wget https://papertrailapp.com/tools/syslog.papertrail.crt -O $cert",
-        creates => $cert
+        command => "wget ${papertrail::cert_url} -O ${papertrail::cert}",
+        creates => $papertrail::cert
     }
 }
