@@ -7,7 +7,7 @@ $ActionSendStreamDriverAuthMode x509/name                   # authenticate by ho
 
 *.* @@<%= host %><% unless port.empty? %>:<%= port %><% end %>
 
-
+<% unless optional_files.empty? %>
 $ModLoad imfile
 <% optional_files.each do |file| -%>
 $InputFileName <%= file %>
@@ -17,3 +17,4 @@ $InputFileStateFile state-<%= file.split('/').last %>
 $InputRunFileMonitor
 
 <% end -%>
+<% end %>
