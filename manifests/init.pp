@@ -4,6 +4,6 @@ class papertrail($host = 'logs.papertrailapp.com',
                  $cert = '/etc/syslog.papertrail.crt',
                  $optional_files = []) {
     
-    include papertrail::install, 
-            papertrail::service
+  include papertrail::install, 
+          papertrail::service
 }
