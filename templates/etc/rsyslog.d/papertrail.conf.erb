@@ -5,11 +5,11 @@ $DefaultNetstreamDriver gtls                                # use gtls netstream
 $ActionSendStreamDriverMode 1                               # require TLS
 $ActionSendStreamDriverAuthMode x509/name                   # authenticate by hostname
 
-*.* @@<%= host %><% unless port.empty? %>:<%= port %><% end %>
+*.* @@<%= @host %><% unless @port.empty? %>:<%= @port %><% end %>
 
-<% unless optional_files.empty? %>
+<% unless @optional_files.empty? %>
 $ModLoad imfile
-<% optional_files.each do |file| -%>
+<% @optional_files.each do |file| -%>
 $InputFileName <%= file %>
 $InputFileTag <%= file.split('/').last %>:
 #$InputFilePersistStateInterval 100
