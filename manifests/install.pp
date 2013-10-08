@@ -14,12 +14,17 @@ class papertrail::install {
     notify  => Service['rsyslog'];
   }
 
+  $rsyslog_user = $::operatingsystem ? {
+    'Ubuntu'  => 'syslog',
+    default   => 'root',
+  }
+
   file { $papertrail::cert:
     ensure  => 'present',
     replace => 'no',
-    owner   => 'root',
+    owner   => $rsyslog_user,
     group   => 'root',
-    mode    => '0600',
+    mode    => '0660',
     require => [
       File['/etc/rsyslog.d/papertrail.conf'],
       Exec['get_certificates']
