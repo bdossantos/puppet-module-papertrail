@@ -4,6 +4,42 @@ $DefaultNetstreamDriverCAFile /etc/syslog.papertrail.crt    # trust these CAs
 $DefaultNetstreamDriver gtls                                # use gtls netstream driver
 $ActionSendStreamDriverMode 1                               # require TLS
 $ActionSendStreamDriverAuthMode x509/name                   # authenticate by hostname
+<%- if @action_resume_interval -%>
+$ActionResumeInterval <%= @action_resume_interval %>
+<%- end -%>
+<%- if @action_queue_size -%>
+$ActionQueueSize <%= @action_queue_size %>
+<%- end -%>
+<%- if @action_discard_mark -%>
+$ActionQueueDiscardMark <%= @action_discard_mark %>
+<%- end -%>
+<%- if @action_queue_high_watermark -%>
+$ActionQueueHighWaterMark <%= @action_queue_high_watermark %>
+<%- end -%>
+<%- if @action_queue_type -%>
+$ActionQueueType <%= @action_queue_type %>
+<%- end -%>
+<%- if @action_queue_filename -%>
+$ActionQueueFileName <%= @action_queue_filename %>
+<%- end -%>
+<%- if @action_queue_checkpoint_interval -%>
+$ActionQueueCheckpointInterval <%= @action_queue_checkpoint_interval %>
+<%- end -%>
+<%- if @action_queue_max_disk_space -%>
+$ActionQueueMaxDiskSpace <%= @action_queue_max_disk_space %>
+<%- end -%>
+<%- if @action_resume_retry_count -%>
+$ActionResumeRetryCount <%= @action_resume_retry_count %>
+<%- end -%>
+<%- if @action_queue_save_on_shutdown -%>
+$ActionQueueSaveOnShutdown <%= @action_queue_save_on_shutdown %>
+<%- end -%>
+<%- if @action_queue_timeout_enqueue -%>
+$ActionQueueTimeoutEnqueue <%= @action_queue_timeout_enqueue %>
+<%- end -%>
+<%- if @action_queue_discard_severity -%>
+$ActionQueueDiscardSeverity <%= @action_queue_discard_severity %>
+<%- end -%>
 
 *.* @@<%= @host %><% unless @port.empty? %>:<%= @port %><% end %>
 
