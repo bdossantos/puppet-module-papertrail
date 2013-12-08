@@ -1,5 +1,6 @@
 ---
 language: ruby
+before_install: rm Gemfile.lock || true
 script:
   - "rake lint"
   - "rake spec"
