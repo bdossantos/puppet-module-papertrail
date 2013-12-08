@@ -33,3 +33,17 @@ Or
 ```
 puppet apply -e "class { 'papertrail': optional_files => ['/var/log/daemon.log', '/var/log/auth.log'], port => 1234 }"
 ```
+
+## Running the tests
+
+Install the dependencies using [Bundler](http://gembundler.com):
+
+```bash
+bundle install
+```
+
+Run the following command :
+
+```bash
+bundle exec rake spec
+```
