@@ -25,6 +25,7 @@ class papertrail::install {
     owner   => $rsyslog_user,
     group   => 'root',
     mode    => '0660',
+    notify  => Service['rsyslog'],
     require => [
       File['/etc/rsyslog.d/papertrail.conf'],
       Exec['get_certificates']
