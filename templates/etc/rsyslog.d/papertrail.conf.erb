@@ -1,6 +1,7 @@
 # file is managed by puppet
 
 $DefaultNetstreamDriverCAFile /etc/syslog.papertrail.crt    # trust these CAs
+$ActionSendStreamDriverPermittedPeer *.papertrailapp.com    # Accept wildcard certificates
 $DefaultNetstreamDriver gtls                                # use gtls netstream driver
 $ActionSendStreamDriverMode 1                               # require TLS
 $ActionSendStreamDriverAuthMode x509/name                   # authenticate by hostname
